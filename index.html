@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Week 10 Homework Task</title>
+  <!-- Vega & Vega-Lite -->
+  <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+</head>
+<body>
+  <h1>Ocean Bleaching</h1>
+  <!-- Chart container -->
+  <div id="barchart"></div>
+
+  <script type="text/javascript">
+    // Load the Vega-Lite JSON spec
+    vegaEmbed('#barchart', 'json/barchart.json').then(function(result) {
+      // Access the Vega view instance as result.view if needed
+    }).catch(console.error);
+  </script>
+
+  <h1>Map of Coral Bleaching</h1>
+  <div id="mapweek9hw"></div>
+  <script type="text/javascript">
+    vegaEmbed('#mapweek9hw','json/mapweek9hw.json').then(function(result){
+    }).catch(console.error);
+  </script>
+
+</body>
+</html>
