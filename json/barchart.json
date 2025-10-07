@@ -1,0 +1,88 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "title": {
+        "text": "Ocean Temperatures at Surrounding Countries"
+    },
+    "data": {
+        "url": "https://raw.githubusercontent.com/anay0012/Week-10-Homework/refs/heads/main/global_bleaching_environmental.csv"
+    },
+    "params":[
+        {
+            "name": "Temperature_Above",
+            "value":0,
+            "bind":{
+                "input":"range",
+                "min":275,
+                "max": 315,
+                "step":5,
+                "name":"Minimum Temperature"
+            }
+        }
+    ],
+    "transform":[ 
+        {
+            "filter": "datum.Temperature_Kelvin > Temperature_Above"
+        }
+    ],
+    "layer": [
+        {
+            "mark": "bar",
+            "encoding": {
+                "x": {
+                    "field": "Country_Name",
+                    "type": "nominal",
+                    "title": "Countries"
+                },
+                "y": {
+                    "field": "Temperature_Mean",
+                    "type": "quantitative",
+                    "title": "Average Temperature (?)"
+                },
+                "tooltip": [
+                    {
+                        "field": "Latitude_Degrees",
+                        "type": "quantitative",
+                        "title": "Latitude",
+                        "format": ","
+                    },
+                    {
+                        "field": "Longitude_Degrees",
+                        "type": "quantitative",
+                        "title": "Longitude",
+                        "format": ","
+                    },
+                    {
+                        "field":"Temperature_Kelvin",
+                        "type":"quantitative",
+                        "title":"Ocean Temperature (Kelvin)",
+                        "format":","
+                    }
+                ]
+            }
+        },
+        {
+            "mark": {
+                "type": "text",
+                "align": "right",
+                "baseline": "middle",
+                "fontSize": 17,
+                "fontStyle": "italic"
+            },
+            "encoding": {
+                "text": {
+                    "field": "Temperature_Kelvin",
+                    "type":"quantitative"
+                },
+                "color": {
+                    "value": "black"
+                },
+                "opacity": {
+                    "condition": {
+                        "test": "datum['Temperature_Kelvin'] == '300' || datum['Country'] == 'Australia' ",
+                        "value": 1
+                    }
+                }
+            }
+        }
+    ]
+}
